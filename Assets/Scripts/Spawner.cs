@@ -9,15 +9,15 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        _spawnPoints = FindObjectsByType<SpawnPoint>(FindObjectsSortMode.None);
+        _spawnPoints = GetComponentsInChildren<SpawnPoint>();
     }
 
     private void Start()
     {
-        InvokeRepeating(nameof(EnemySpawn), _delay, _delay);
+        InvokeRepeating(nameof(Create), _delay, _delay);
     }
 
-    private void EnemySpawn()
+    private void Create()
     {
         int index = Random.Range(0, _spawnPoints.Length);
 

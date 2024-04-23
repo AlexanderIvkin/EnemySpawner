@@ -6,6 +6,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector2.up * _speed * Time.deltaTime, Space.Self);
+        transform.Translate(Vector2.up * _speed * Time.deltaTime);
     }
 }
