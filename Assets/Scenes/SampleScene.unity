@@ -184,7 +184,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -267,11 +267,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Virus
       objectReference: {fileID: 0}
+    - target: {fileID: 7325442503602870180, guid: b96a560dd14ccd242ab97dc162e52680, type: 3}
+      propertyPath: _parent
+      value: 
+      objectReference: {fileID: 8713555062335194016}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b96a560dd14ccd242ab97dc162e52680, type: 3}
+--- !u!4 &8713555062335194016 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1562336523177398030, guid: b96a560dd14ccd242ab97dc162e52680, type: 3}
+  m_PrefabInstance: {fileID: 8713555062335194015}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

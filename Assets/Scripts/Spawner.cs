@@ -1,28 +1,43 @@
+using System.Collections;
 using UnityEngine;
+
+[SelectionBase]
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private Transform _parent;
     [SerializeField] private float _delay;
 
     private SpawnPoint[] _spawnPoints;
+    private bool _isSpawned = true;
 
     private void Awake()
     {
-        _spawnPoints = GetComponentsInChildren<SpawnPoint>();
+        _spawnPoints = _parent.GetComponentsInChildren<SpawnPoint>();
     }
 
     private void Start()
     {
-        InvokeRepeating(nameof(Create), _delay, _delay);
+        StartCoroutine(Create());
     }
 
-    private void Create()
+    private IEnumerator Create()
     {
-        int index = Random.Range(0, _spawnPoints.Length);
+        var wait = new WaitForSeconds(_delay);
 
-        SpawnPoint currentSpawnPoint = _spawnPoints[index];
+        while (_isSpawned)
+        {
+            if (_spawnPoints.Length > 0)
+            {
+                int index = Random.Range(0, _spawnPoints.Length);
 
-        Instantiate(_enemyPrefab, currentSpawnPoint.transform.position , currentSpawnPoint.transform.localRotation);
+                SpawnPoint currentSpawnPoint = _spawnPoints[index];
+
+                Instantiate(_enemyPrefab, currentSpawnPoint.transform.position, Quaternion.identity).SetDirection(currentSpawnPoint.ReturnDirection());
+
+                yield return wait;
+            }
+        }
     }
 }
