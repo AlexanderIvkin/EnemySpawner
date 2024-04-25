@@ -7,7 +7,9 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private Transform _parent;
+    [SerializeField] private Transform _target;
     [SerializeField] private float _delay;
+    [SerializeField] private Color _color;
 
     private SpawnPoint[] _spawnPoints;
     private bool _isSpawned = true;
@@ -34,7 +36,7 @@ public class Spawner : MonoBehaviour
 
                 SpawnPoint currentSpawnPoint = _spawnPoints[index];
 
-                Instantiate(_enemyPrefab, currentSpawnPoint.transform.position, Quaternion.identity).SetDirection(currentSpawnPoint.ReturnDirection());
+                Instantiate(_enemyPrefab, currentSpawnPoint.transform.position, Quaternion.identity).SetProperties(_target, _color);
 
                 yield return wait;
             }
